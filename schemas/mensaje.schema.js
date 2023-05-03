@@ -11,7 +11,7 @@ const enviarMensajeSchema = Joi.object({
   apellidos: apellidos.required(),
   email: email.required(),
   mensaje: mensaje.required(),
-  codigoCaptcha: codigoCaptcha.required()
+  tokenCaptcha: codigoCaptcha.required()
 });
 
 module.exports = {

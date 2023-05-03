@@ -1,10 +1,11 @@
 require('dotenv').config();
 
 const config = {
-  emailUser: process.env.EMAIL_USER,
-  emailCode: process.env.EMAIL_CODE,
+  emailRecype: process.env.EMAIL_RECYPE,
+  passRecype: process.env.PASS_RECYPE,
   captchaCode: process.env.CAPTCHA_CODE,
-  emailToSend: process.env.EMAIL_TO_SEND
+  emailToSend: process.env.EMAIL_TO_SEND,
+  serverPort: process.env.PORT
 }
 
 module.exports = {

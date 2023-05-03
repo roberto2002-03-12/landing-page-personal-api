@@ -9,8 +9,8 @@ const sendMessage = async (dataMail) => {
     secure: true,
     port: 465,
     auth: {
-      user: config.emailUser,
-      pass: config.emailCode
+      user: config.emailRecype,
+      pass: config.passRecype
     },
     tls: {
       rejectUnauthorized: true
@@ -26,7 +26,7 @@ const sendMessage = async (dataMail) => {
 
 const authHuman = async (obj) => {
   const respuesta = await axios.post(
-      `https://www.google.com/recaptcha/api/siteverify?secret=${config.captchaCode}&response=${obj.captchaToken}`
+    `https://www.google.com/recaptcha/api/siteverify?secret=${config.captchaCode}&response=${obj.captchaToken}`
   );
 
   if (respuesta.data.success === false) return false;
@@ -42,13 +42,13 @@ const createMessage = async (message) => {
     ${message.mensaje}`;
   
   const emailInfo = {
-    from: config.emailUser,
+    from: config.emailRecype,
     to: `${config.emailToSend}`,
     subject: 'Oportunidad de trabajo o proyecto',
     text: texto
   };
   //ToDo agregar el codigo captcha al schema de mensaje
-  const validation = await authHuman(message.codeCaptcha);
+  const validation = await authHuman(message.tokenCaptcha);
 
   if (!validation) throw boom.badRequest('Por favor verifique que es humano')
 
