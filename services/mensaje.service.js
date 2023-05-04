@@ -1,3 +1,4 @@
+const boom = require('@hapi/boom');
 const nodemailer = require('nodemailer');
 const { config } = require('../config/variables');
 const axios = require('axios').default;
@@ -25,9 +26,12 @@ const sendMessage = async (dataMail) => {
 };
 
 const authHuman = async (obj) => {
+  console.log(obj)
   const respuesta = await axios.post(
-    `https://www.google.com/recaptcha/api/siteverify?secret=${config.captchaCode}&response=${obj.captchaToken}`
+    `https://www.google.com/recaptcha/api/siteverify?secret=${'6LfvmJYlAAAAANJPYH47QZieIFtUzuExZ7nLODiw'}&response=${obj.tokenCaptcha}`
   );
+
+  console.log(respuesta);
 
   if (respuesta.data.success === false) return false;
 
