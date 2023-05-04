@@ -10,7 +10,7 @@ router.post('/',
     try {
       const obj = req.body;
       await createMessage(obj);
-      res.status(201);
+      res.status(201).json('Mensaje enviado');
     } catch (err) {
       next(err);
     }
